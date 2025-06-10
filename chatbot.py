@@ -15,6 +15,8 @@ client = openai.AzureOpenAI(
 conversation_history = []
 
 def chat_with_ai():
+    global conversation_history
+    
     while True:
         user_input = input("\nYou: ")  # Get input from terminal
         if user_input.lower() == "exit":
@@ -26,8 +28,7 @@ def chat_with_ai():
         # Define prompt for AI
         messages = [
             {"role": "system", "content": "You are a helpful AI assistant. Remember past user questions and your previous responses."},
-            *conversation_history  # Include conversation history
-
+            *conversation_history,  # Include conversation history
             {"role": "user", "content": user_input}
         ]
 
